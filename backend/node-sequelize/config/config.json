@@ -2,22 +2,22 @@
   "development": {
     "username": "steve",
     "password": "abc123",
-    "database": "database_development",
+    "database": "node_sequelize",
     "host": "127.0.0.1",
-    "dialect": "posgres"
+    "dialect": "postgres"
   },
   "test": {
     "username": "steve",
     "password": "abc123",
-    "database": "database_test",
+    "database": "node_sequelize",
     "host": "127.0.0.1",
-    "dialect": "posgres"
+    "dialect": "postgres"
   },
   "production": {
     "username": "steve",
     "password": "abc123",
-    "database": "database_production",
+    "database": "node_sequelize",
     "host": "127.0.0.1",
-    "dialect": "posgres"
+    "dialect": "postgres"
   }
 }
