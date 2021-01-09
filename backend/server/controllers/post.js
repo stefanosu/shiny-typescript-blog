@@ -26,7 +26,7 @@ class Posts {
     static modify(req, res) {
       const { title, content, favorite } = req.body
       return Post
-        .findById(req.params.postId)
+        .findByPk(req.params.postId)
         .then((post) => {
           post.update({
             title: title || post.title,
@@ -49,7 +49,7 @@ class Posts {
     }
     static delete(req, res) {
       return Post
-        .findById(req.params.Id)
+        .findByPk(req.params.Id)
         .then(post => {
           if(!post) {
             return res.status(400).send({
