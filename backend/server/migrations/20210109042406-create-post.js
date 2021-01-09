@@ -17,7 +17,7 @@ module.exports = {
       favorite: {
         type: Sequelize.BOOLEAN
       },
-      user_id: {
+      userId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
