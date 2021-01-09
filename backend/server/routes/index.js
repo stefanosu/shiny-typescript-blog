@@ -17,4 +17,6 @@ app.get('/api/posts', Posts.list); // API route for user to get all posts in the
 
 app.put('/api/posts/:postID', Posts.modify); // API route for user to edit a post
 
+app.delete('/api/posts/:postId', Posts.delete); // API route for user to delete a post
+
 }
