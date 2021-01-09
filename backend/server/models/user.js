@@ -1,65 +1,55 @@
-import { Model } from 'sequelize';
-
-export default (sequelize, DataTypes) => {
-  class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      User.associate = (models) => {
-        User.hasMany(models.Post, {
-          foreignKey: 'userId'
-        }) 
-      }
-      return User
-      // define association here
-    }
-  };
-  User.init({
-    username: {
-      type: DataTypes.STRING,
-      allowNull: {
-        args: false,
-        msg:'Please enter your username'
-      } 
-    }, 
-      
-    email: {
-      type: DataTypes.STRING,
-      allowNull: {
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define(
+    "User",
+    {
+      username: {
+        type: DataTypes.STRING,
+        allowNull: {
           args: false,
-          msg:'Please enter your email'
+          msg: "Please enter your username",
+        },
       },
-      unique: {
-        args: true,
-        msg: 'Email already exists'
-      },
-      validate: {
-        isEmail: {
+
+      email: {
+        type: DataTypes.STRING,
+        allowNull: {
+          args: false,
+          msg: "Please enter your email",
+        },
+        unique: {
           args: true,
-          msg: 'Please enter a valid email address'
+          msg: "Email already exists",
+        },
+        validate: {
+          isEmail: {
+            args: true,
+            msg: "Please enter a valid email address",
+          },
         },
       },
-    }, 
-    password: {
-      type: DataTypes.STRING, 
-      allowNull: {
-        args: false,
-        msg: 'Please enter a password'
-      },
-      validate: {
-        isNotShort: (value) => {
-          if (value.length < 8) {
-            throw new Error('Password should be at least 8 characters');
-          }
+      password: {
+        type: DataTypes.STRING,
+        allowNull: {
+          args: false,
+          msg: "Please enter a password",
         },
-      }, 
-    }
-  }, {
-    sequelize,
-    modelName: 'User',
-  });
+        validate: {
+          isNotShort: (value) => {
+            if (value.length < 8) {
+              throw new Error("Password should be at least 8 characters");
+            }
+          },
+        },
+      },
+    },
+    {}
+  );
+  User.associate = (models) => {
+    User.hasMany(models.Post, {
+      foreignKey: "userId",
+    });
+    return User;
+    // define association here
+  };
   return User;
 };
