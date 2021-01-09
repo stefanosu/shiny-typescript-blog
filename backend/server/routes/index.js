@@ -1,5 +1,6 @@
 import Users from '../controllers/user';
 
+
 export default (app) => {
 
   app.get('/api', (req, res) => res.status(200).send({
