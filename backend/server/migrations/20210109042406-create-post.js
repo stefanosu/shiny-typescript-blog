@@ -9,16 +9,27 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
+        allowNull: false, 
         type: Sequelize.STRING
       },
       content: {
+        allowNull: false, 
         type: Sequelize.TEXT
       },
       favorite: {
+        allowNull: {
+          defaultValue: false,  
+        }, 
         type: Sequelize.BOOLEAN
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Users', 
+          key: 'id',
+          as: 'userId'
+        }
       },
       createdAt: {
         allowNull: false,

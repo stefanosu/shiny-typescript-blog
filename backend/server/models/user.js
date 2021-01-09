@@ -8,6 +8,12 @@ export default (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      User.associate = (models) => {
+        User.hasMany(models.Post, {
+          foreignKey: 'userId'
+        }) 
+      }
+      return User
       // define association here
     }
   };

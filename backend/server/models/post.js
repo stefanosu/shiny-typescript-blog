@@ -8,6 +8,13 @@ export default (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      Post.associate = (models) => {
+      Post.belongsTo(models.User, {
+        foreignKey: 'userId', 
+        onDelete: 'CASCADE'
+      })
+    }
+    return User 
       // define association here
     }
   };
