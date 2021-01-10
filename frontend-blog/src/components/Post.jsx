@@ -1,14 +1,14 @@
 import React from 'react';
 
-const Post = () => {
+const Post = (props) => {
     return (
     <>
-    <section>
-    <h3>Post title will appear here</h3>
-    <p> Post contents will appear here</p>
-    <button>Edit</button>
-    <button>Delete</button>
-    </section>
+      <section>
+        <h3>{props.title}</h3>
+        <p> {props.content}</p>
+        <button>Edit</button>
+        <button>Delete</button>
+      </section>
     </>
     )
 }
