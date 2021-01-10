@@ -1,7 +1,6 @@
 import CreateNewPost from "./CreateNewPost";
 import React, { useState, useRef } from "react";
 
-
 const getTitle = useRef();
 const getContent = useRef();
 
@@ -19,14 +18,14 @@ const AllPosts = () => {
     console.log(content);
   };
 
-
   const savePost = () => {
     setAllPosts([...allPosts, { title, content }]);
     setTitle("");
     setContent("");
     console.log(allPosts);
+    getTitle.current.value = ''
+    getContent.current.value = ''
   };
-
 
   return (
     <>
