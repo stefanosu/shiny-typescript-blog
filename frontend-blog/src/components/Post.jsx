@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Post = (props) => {
+const Post = ({title, content, id, editPost, deletePost}) => {
     return (
     <>
       <section>
-        <h3>{props.title}</h3>
-        <p> {props.content}</p>
-        <button>Edit</button>
-        <button>Delete</button>
+        <h3>{title}</h3>
+        <p> {content}</p>
+        <button onClick={() => editPost(id)}>Edit</button>
+        <button onClick={() => deletePost(id)}>Delete</button>     
       </section>
     </>
     )
