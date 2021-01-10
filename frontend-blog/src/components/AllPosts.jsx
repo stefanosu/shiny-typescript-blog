@@ -18,7 +18,8 @@ const AllPosts = () => {
     console.log(content);
   };
 
-  const savePost = () => {
+  const savePost = (e) => {
+    e.preventDefault()
     setAllPosts([...allPosts, { title, content }]);
     setTitle("");
     setContent("");
