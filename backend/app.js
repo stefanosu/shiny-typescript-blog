@@ -1,19 +1,17 @@
-import http from 'http'
-import express from 'express'
+const express = require('express')
 
-import logger from 'morgan';
-import routes from './server/routes';
+const logger = require('morgan')
+const routes = require('./server/index.js')
 
-const hostname = '127.0.0.1';
 const port = 3000;
 const app = express()
-const server = http.createServer(app);
+
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use('/api', routes)
 
-routes(app);
 
 app.get('*', (req, res) => res.status(200).send({
   message: 'Welcome to the blog!.',
@@ -21,7 +19,7 @@ app.get('*', (req, res) => res.status(200).send({
 
 
 
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+app.listen(port, () => {
+  console.log(`Server running at http://:${port}/`);
 });
+
