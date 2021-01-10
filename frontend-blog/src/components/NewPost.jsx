@@ -11,6 +11,7 @@ const NewPost = (props) => {
           placeholder="title"
           size="39"
           required
+          ref={props.getTitle}
         ></input>
         <br />
         <textarea
@@ -19,6 +20,7 @@ const NewPost = (props) => {
           rows="8"
           cols="41"
           required
+          ref={props.getContent}
         ></textarea>
         <br />
         <button>Save Post</button>
