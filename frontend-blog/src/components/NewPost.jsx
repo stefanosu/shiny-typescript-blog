@@ -1,15 +1,25 @@
 import React from "react";
 
-const NewPost = () => {
+const NewPost = (props) => {
   return (
     <>
       <form>
         <h1>Create New Post</h1>
-        <input type="text" placeHolder="title" size="39" required></input>
+        <input
+          type="text"
+          onChange={props.savePostTitleToState}
+          placeholder="title"
+          size="39"
+          required
+        ></input>
         <br />
-        <br />
-        <textarea placeHolder="contents" rows="8" cols="41" required></textarea>
-        <br />
+        <textarea
+          onChange={props.savePostContentToState}
+          placeholder="contents"
+          rows="8"
+          cols="41"
+          required
+        ></textarea>
         <br />
         <button>Save Post</button>
       </form>
