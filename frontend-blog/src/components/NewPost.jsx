@@ -1,9 +1,9 @@
 import React from "react";
 
-const NewPost = (props) => {
+const NewPost = props => {
   return (
     <>
-      <form>
+      <form onSubmit={props.savePost}>
         <h1>Create New Post</h1>
         <input
           type="text"
@@ -14,6 +14,7 @@ const NewPost = (props) => {
           ref={props.getTitle}
         ></input>
         <br />
+        <br />
         <textarea
           onChange={props.savePostContentToState}
           placeholder="contents"
@@ -22,6 +23,7 @@ const NewPost = (props) => {
           required
           ref={props.getContent}
         ></textarea>
+        <br />
         <br />
         <button>Save Post</button>
       </form>
