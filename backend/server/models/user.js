@@ -1,8 +1,7 @@
 // const {sequelize, DataTypes} = require('sequelize');
 
-
-  function userModel (sequelize, DataTypes) {
-    console.log( sequelize)   
+function userModel(sequelize, DataTypes) {
+  // console.log(sequelize);
   const User = sequelize.define(
     "User",
     {
@@ -56,8 +55,7 @@
     // define association here
   };
 
-return User 
-
+  return User;
 }
 
-module.exports = userModel
+module.exports = userModel;

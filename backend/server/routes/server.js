@@ -15,12 +15,12 @@ router.post('/create-user', Users.createUser); // API route for user to signup
 
  // API route for user to create a post
 
-router.get("/posts", Posts.getUsersFavPosts); // API route for user to get all posts in the database
+router.get("/getUsersFav", Posts.getUsersFavPosts); // API route for user to get all posts in the database
 
-router.put("/posts/:postId", Posts.updatePost); // API route for user to edit a post
+router.put("/updatePosts/:postId", Posts.updatePost); // API route for user to edit a post
 
-router.delete("/posts/:postId", Posts.deletePost); // API route for user to delete a post
+router.delete("/deletePosts/:postId", Posts.deletePost); // API route for user to delete a post
 
-router.post("/", Posts.createPost);
+router.post("/createPosts", Posts.createPost);
 
 module.exports = router 

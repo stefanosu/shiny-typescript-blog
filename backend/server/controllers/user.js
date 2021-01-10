@@ -4,7 +4,7 @@ const Post = require("../models/post");
 const createUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    console.log(db);
+    // console.log(db);
     const data = await db.User.create({
       username,
       email,
@@ -44,22 +44,3 @@ module.exports = {
   createUser,
   getUserFavPostById,
 };
-
-// class Users {
-//   static signUp(req, res) {
-//     const { username, email, password } = req.body
-//       return User
-//         .create({
-//           username,
-//           email,
-//           password
-//         })
-//         .then(userData => res.status(201).send({
-//           success: true,
-//           message: 'User successfully created',
-//           userData
-//         }))
-//     }
-// }
-
-// export default Users;

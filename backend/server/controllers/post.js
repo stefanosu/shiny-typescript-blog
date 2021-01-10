@@ -2,7 +2,6 @@ const db = require("../models");
 
 const { Post, User } = db;
 
-
 const createPost = async (req, res) => {
   try {
     const { title, content, favorite } = req.body;
@@ -41,22 +40,22 @@ const getUsersFavPosts = async (req, res) => {
 const updatePost = async (req, res) => {
   try {
     const { title, content, favorite } = req.body;
-    const { id } = req.params;
-    const updatedPost = await db.Post.update({
-      title: title || post.title,
-      content: content || post.content,
-      favorite: favorite || post.favorite,
-    });
-    if (updatedPost) {
-      const updatePost = await Post.findOne({ where: { id: id } });
-      return res.status(200).json({ post: updatePost });
+    const { postId } = req.params;
+    // console.log(req.params, 'params')
+    console.log(postId, "ID");
+    console.log(db.Post, "postModel");
+
+    const post = await Post.findOne({ where: { id: postId } });
+    if (post === null) {
+      return res.status(400).json({message: "Post Not Found"});
+    } else {
+      const updatedPost = await post.update({
+        title: title || post.title,
+        content: content || post.content,
+        favorite: favorite || post.favorite,
+      });
+      return res.status(200).json({ post: updatedPost });
     }
-    res.status(201).send({
-      success: true,
-      message: "Post successfully created",
-      postData,
-    });
-    throw new Error("Post not found");
   } catch (error) {
     return res.status(500).send(error.message);
   }
