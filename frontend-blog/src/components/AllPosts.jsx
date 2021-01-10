@@ -1,57 +1,96 @@
-import CreateNewPost from "./CreateNewPost";
 import React, { useState, useRef } from "react";
-import Post from './Post'
+import CreateNewPost from "./CreateNewPost";
+import Post from "./Post";
+import UpdatePost from "./UpdatePost"
 
-const getTitle = useRef();
-const getContent = useRef();
-
-const AllPosts = () => {
+const DisplayAllPosts = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [allPosts, setAllPosts] = useState([]);
   const [isCreateNewPost, setIsCreateNewPost] = useState(false);
+  const [isUpdatePost, setIsUpdatePost] = useState(false);
+  const [editPostId, setEditPostId] = useState("");
 
-  const savePostTitleToState = (event) => {
+  // Initialize useRef
+  const getTitle = useRef();
+  const getContent = useRef();
+
+  const savePostTitleToState = event => {
     setTitle(event.target.value);
-    console.log(title);
   };
-  const savePostContentToState = (event) => {
+  const savePostContentToState = event => {
     setContent(event.target.value);
-    console.log(content);
   };
-
-  const toggleCreateNewPost =() => {
-    setIsCreateNewPost (!isCreateNewPost)
-}
-
-  const savePost = (e) => {
-    e.preventDefault()
+  const toggleCreateNewPost = () => {
+    setIsCreateNewPost(!isCreateNewPost);
+  };
+  const toggleUpdatePostComponent = () => {
+    setIsUpdatePost(!isUpdatePost)
+  }
+  const editPost = id => {
+    setEditPostId(id);
+    console.log(id)
+    toggleUpdatePostComponent();
+  };
+  const updatePost = (event) => {
+    event.preventDefault();
+    const updatedPost = allPosts.map(eachPost => {
+      if (eachPost.id === editPostId) {
+        console.log([eachPost.id, editPostId] )
+        return {
+          ...eachPost,
+          title: title || eachPost.title,
+          content: content || eachPost.content
+        };
+      }
+      console.log(eachPost)
+      return eachPost;
+    });
+    setAllPosts(updatedPost);
+    toggleUpdatePostComponent();
+  };
+  const savePost = event => {
+    event.preventDefault();
     const id = Date.now();
     setAllPosts([...allPosts, { title, content, id }]);
+    console.log(allPosts);
     setTitle("");
     setContent("");
-    console.log(allPosts);
-    getTitle.current.value = ''
-    getContent.current.value = ''
-    toggleCreateNewPost()
-  };
+    getTitle.current.value = "";
+    getContent.current.value = "";
+    toggleCreateNewPost();
 
-  if(isCreateNewPost){
+  };
+  if (isCreateNewPost) {
     return (
-    <>
-      <CreateNewPost
+      <>
+        <CreateNewPost
+          savePostTitleToState={savePostTitleToState}
+          savePostContentToState={savePostContentToState}
+          getTitle={getTitle}
+          getContent={getContent}
+          savePost={savePost}
+        />
+      </>
+    );
+  }
+  else if (isUpdatePost) {
+    const post = allPosts.find(post => {
+      return post.id === editPostId;
+    });
+    return (
+      <UpdatePost
+        title={post.title}
+        content={post.content}
+        updatePost={updatePost}
         savePostTitleToState={savePostTitleToState}
         savePostContentToState={savePostContentToState}
-        getTitle={getTitle}
-        getContent={getContent}
-        savePost={savePost}
       />
-    </>
-      );
-    }
+    );
+  }
   return (
     <>
-    <h2>All Posts</h2>
+      <h2>All Posts</h2>
       {!allPosts.length ? (
         <div>
           <h3>There is nothing to see here!</h3>
@@ -64,14 +103,15 @@ const AllPosts = () => {
               key={eachPost.id}
               title={eachPost.title}
               content={eachPost.content}
+              editPost={editPost}
             />
           );
         })
-      )}      <br/>
-      <br/>
+      )}
+      <br />
+      <br />
       <button onClick={toggleCreateNewPost}>Create New</button>
     </>
-  )
+  );
 };
-
-export default AllPosts;
+export default DisplayAllPosts;

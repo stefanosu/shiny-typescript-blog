@@ -1,6 +1,6 @@
 import React from "react";
 
-const NewPost = props => {
+const NewPost = (props) => {
   return (
     <>
       <form onSubmit={props.savePost}>
