@@ -22,6 +22,20 @@ const createPost = async (req, res) => {
   }
 };
 
+
+const getAllPosts = async(req, res) => {
+  try {
+    const posts = await db.Post.findAll()
+    console.log(posts.every(post => post instanceof Post)); // true
+    console.log("All posts:", JSON.stringify(posts, null, 2));
+    console.log(posts)
+    res.status(201).send({posts, message: 'Retrieved all Posts'})
+  } catch (e) {
+    return res.status(500).json({error: error.message})
+  }
+}
+
+
 const getUsersFavPosts = async (req, res) => {
   try {
     const users = await User.findAll({
@@ -47,7 +61,7 @@ const updatePost = async (req, res) => {
 
     const post = await Post.findOne({ where: { id: postId } });
     if (post === null) {
-      return res.status(400).json({message: "Post Not Found"});
+      return res.status(400).json({ message: "Post Not Found" });
     } else {
       const updatedPost = await post.update({
         title: title || post.title,
@@ -62,12 +76,16 @@ const updatePost = async (req, res) => {
 };
 
 const deletePost = async (req, res) => {
+  console.log(req.params,"params");
+
   try {
-    const { id } = req.params;
-    const deleted = await Post.destroy({
-      where: { id: id },
-    });
-    if (deleted) {
+    const { postId } = req.params;
+    console.log(postId, "ID");
+
+    const post = await Post.findOne({ where: { id: postId } });
+    post.destroy({ post });
+    
+    if (post) {
       return res.status(204).send("Post deleted");
     }
     throw new Error("Post not found");
@@ -81,4 +99,5 @@ module.exports = {
   getUsersFavPosts,
   updatePost,
   deletePost,
+  getAllPosts
 };

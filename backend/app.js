@@ -11,11 +11,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/api", routes);
 
-app.get("*", (req, res) =>
-  res.status(200).send({
-    message: "Welcome to the blog!.",
-  })
-);
 
 app.listen(port, () => {
   console.log(`Server running at http://:${port}/`);

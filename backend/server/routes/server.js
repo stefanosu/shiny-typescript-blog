@@ -17,6 +17,8 @@ router.post('/create-user', Users.createUser); // API route for user to signup
 
 router.get("/getUsersFav", Posts.getUsersFavPosts); // API route for user to get all posts in the database
 
+router.get("/getPosts", Posts.getAllPosts) //API route to get all posts 
+
 router.put("/updatePosts/:postId", Posts.updatePost); // API route for user to edit a post
 
 router.delete("/deletePosts/:postId", Posts.deletePost); // API route for user to delete a post
