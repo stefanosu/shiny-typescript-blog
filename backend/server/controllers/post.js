@@ -1,8 +1,7 @@
 const db = require("../models");
 
-const { Post } = db;
+const { Post, User } = db;
 
-const { User } = require("../models");
 
 const createPost = async (req, res) => {
   try {

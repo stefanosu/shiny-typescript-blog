@@ -1,35 +1,26 @@
-const Users = require("./controllers/user");
-const Posts = require("./controllers/post");
+const Users = require('../controllers/user');
+const Posts = require('../controllers/post');
 
-const db = require('./models') 
-const express = require('express') 
+// const db = require('../models') 
+const express = require('express'); 
+const router = express.Router()
 
-const app = express()
+// const app = express()
 
-app.use(express.json())
+// app.use(express.json())
 
-
-app.use('/api/users', controller.Users)
-app.post('/api/createUser', Users.createUser); // API route for user to signup
-
-
-app.get('/users/:id', controllers.getUserById)
-
-const logger = require('morgan');
-app.use(logger('dev'))
-
-app.post('/', function (req, res) {
-  res.send('POST request to the homepage')
-})
+// app.get('/api/users', Users)
+router.post('/create-user', Users.createUser); // API route for user to signup
 
 
-app.post("/", createPost); // API route for user to create a post
+ // API route for user to create a post
 
-app.get("/posts", Posts.list); // API route for user to get all posts in the database
+router.get("/posts", Posts.getUsersFavPosts); // API route for user to get all posts in the database
 
-app.put("/posts/:postID", Posts.modify); // API route for user to edit a post
+router.put("/posts/:postId", Posts.updatePost); // API route for user to edit a post
 
-app.delete("/posts/:postId", Posts.delete); // API route for user to delete a post
+router.delete("/posts/:postId", Posts.deletePost); // API route for user to delete a post
 
+router.post("/", Posts.createPost);
 
-  module.exports = app 
+module.exports = router 

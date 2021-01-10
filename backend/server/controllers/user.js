@@ -1,19 +1,17 @@
 const db = require("../models");
-
-const { User } = db;
-
-const { User, Post } = require("../models");
+const Post = require("../models/post");
 
 const createUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
+    console.log(db);
     const data = await db.User.create({
       username,
       email,
       password,
     });
+    console.log(data);
     res.status(201).send({
-      success: true,
       message: "User successfully created",
       data,
     });
@@ -38,7 +36,7 @@ const getUserFavPostById = async (req, res) => {
     }
     return res.status(404).send("User with the specified ID does not exists");
   } catch (error) {
-    return res.status(500).send(error.message);
+    return res.status(500).send({ error: error.message });
   }
 };
 

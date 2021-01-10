@@ -1,4 +1,8 @@
-module.exports = (sequelize, DataTypes) => {
+// const {sequelize, DataTypes} = require('sequelize');
+
+
+  function userModel (sequelize, DataTypes) {
+    console.log( sequelize)   
   const User = sequelize.define(
     "User",
     {
@@ -51,5 +55,9 @@ module.exports = (sequelize, DataTypes) => {
     return User;
     // define association here
   };
-  return User;
-};
+
+return User 
+
+}
+
+module.exports = userModel
