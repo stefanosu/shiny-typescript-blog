@@ -1,5 +1,15 @@
 // const {sequelize, DataTypes} = require('sequelize');
 
+
+// export interface UserAttributes {
+//   id?: number;
+//   username: string;
+//   email: string;
+//   password: string;
+//   createdAt?: Date;
+//   updatedAt?: Date;
+// };
+
 function userModel(sequelize, DataTypes) {
   // console.log(sequelize);
   const User = sequelize.define(

@@ -26,7 +26,7 @@ const getAllPosts = async (req, res) => {
   console.log(posts);
 
   try {
-    const posts = await Post.findAll({
+    const posts = await Post.getAll({
       attributes: ['title', 'content', 'favorite'],
     });
     console.log(posts);
@@ -79,7 +79,6 @@ const updatePost = async (req, res) => {
 };
 
 const deletePost = async (req, res) => {
-  // debugger;
   console.log(id, "ID");
   try {
     const { postId } = req.params;
