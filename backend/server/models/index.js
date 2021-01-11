@@ -25,15 +25,15 @@ const data = fs.readdirSync(__dirname).filter((file) => {
     file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
   );
 });
-console.log(data, "here iam !!");
+// console.log(data, "here iam !!");
 data.forEach((file) => {
   const model = require(path.join(__dirname, file))(
     sequelize,
     Sequelize.DataTypes
   );
-  console.log(__dirname, "diirrr");
-  console.log(path.join(__dirname, file), "file", "dirr");
-  console.log(model, "modell");
+  // console.log(__dirname, "diirrr");
+  // console.log(path.join(__dirname, file), "file", "dirr");
+  // console.log(model, "modell");
 
   db[model.name] = model;
 });

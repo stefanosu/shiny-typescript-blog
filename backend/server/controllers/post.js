@@ -6,7 +6,7 @@ const createPost = async (req, res) => {
   try {
     const { title, content, favorite } = req.body;
     const { userId } = req.params;
-    const postData = await db.Post.create({
+    const postData = await Post.create({
       title,
       content,
       favorite,
@@ -22,30 +22,33 @@ const createPost = async (req, res) => {
   }
 };
 
+const getAllPosts = async (req, res) => {
+  console.log(posts);
 
-const getAllPosts = async(req, res) => {
   try {
-    const posts = await db.Post.findAll()
-    console.log(posts.every(post => post instanceof Post)); // true
-    console.log("All posts:", JSON.stringify(posts, null, 2));
-    console.log(posts)
-    res.status(201).json({posts, message: 'Retrieved all Posts'})
-  } catch (e) {
-    return res.status(500).json({error: error.message})
-  }
-}
-
-
-const getUsersFavPosts = async (req, res) => {
-  try {
-    const users = await User.findAll({
-      include: [
-        {
-          model: Post,
-        },
-      ],
+    const posts = await Post.findAll({
+      attributes: ['title', 'content', 'favorite'],
     });
-    return res.status(200).json({ users });
+    console.log(posts);
+
+    return res.status(200).json({ posts: posts });
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
+
+
+const getUsersFavPosts = async (req, res) => { 
+  try {
+    const favPosts = await Post.findAll({
+      where : { user_id : req.post.favorite } // <----- HERE
+      // include: [{
+      //     model: User,
+      //     attributes: ['id', 'nick']
+      // }]
+    }) 
+    return res.status(200).json({ favPosts });
   } catch (error) {
     return res.status(500).send(error.message);
   }
@@ -55,7 +58,7 @@ const updatePost = async (req, res) => {
   try {
     const { title, content, favorite } = req.body;
     const { postId } = req.params;
-    // console.log(req.params, 'params')
+    // console.log(req.params, "params");
     // console.log(postId, "ID");
     // console.log(db.Post, "postModel");
 
@@ -76,31 +79,28 @@ const updatePost = async (req, res) => {
 };
 
 const deletePost = async (req, res) => {
+  // debugger;
+  console.log(id, "ID");
   try {
     const { postId } = req.params;
-    console.log(req.params, 'params')
+    console.log(req.params, "params");
     console.log(postId, "ID");
-    // console.log(db.Post, "postModel");
-
-    // const post = await Post.findOne({ where: { id: postId } });
-    if (post === null) {
-      return res.status(400).json({ message: "Post Not Found" });
-    } else {
-      const deletedPost = await db.Post.destroy({where: { id: postId } });
+    const deleted = await db.Post.destroy({
+      where: { id: postId },
+    });
+    if (deleted) {
+      return res.status(204).send("Post deleted");
     }
-    return res.status(200).json({ post: deletedPost });
-    
+    throw new Error("Post not found");
   } catch (error) {
     return res.status(500).send(error.message);
   }
 };
-
-
 
 module.exports = {
   createPost,
   getUsersFavPosts,
   updatePost,
   deletePost,
-  getAllPosts
+  getAllPosts,
 };
