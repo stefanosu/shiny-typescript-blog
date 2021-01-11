@@ -2,22 +2,22 @@ import React, { useState, useEffect } from "react";
 import NewPost from "./NewPost";
 import Post from "./Post";
 import UpdatePost from "./UpdatePost"
-import PostType from './Types';
+// import PostType from './Types';
 
-// interface PostType {
-//   title: string;
-//   content: string;
-//   id: number;
-// }
-
-interface SinglePost {
-  post:PostType  
+interface PostType {
+  title: string;
+  content: string;
+  id: number;
 }
+
+// interface SinglePost {
+//   post:PostType  
+// }
 
 const DisplayAllPosts = () => {
   const  [state, setState] = useState({title: '', content: ''});
 
-  const [allPosts, setAllPosts] = useState<SinglePost[]>([]);
+  const [allPosts, setAllPosts] = useState<PostType[]>([]);
 
 
   const [isCreateNewPost, setIsCreateNewPost] = useState(false);
