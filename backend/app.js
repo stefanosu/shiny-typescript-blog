@@ -3,6 +3,7 @@ const express = require("express");
 const logger = require("morgan");
 const routes = require("./server/routes/server");
 
+const cors = require('cors')
 const port = 3000;
 const app = express();
 
