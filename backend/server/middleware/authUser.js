@@ -25,19 +25,19 @@ const verifyToken = (req, res, next) => {
 
 
 
-const isUser = (req, res, next) => {
-  User.findByPk(req.userId).then(user => {
-        if (user.userId === 'userId') {
-          next();
-          // return;
-          res.status(202).send({message: "Is correct user"})
-        }
-      })
+// const isUser = (req, res, next) => {
+//   User.findByPk(req.userId).then(user => {
+//         if (user.userId === 'userId') {
+//           next();
+//           // return;
+//           res.status(202).send({message: "Is correct user"})
+//         }
+//       })
 
-      res.status(403).send({
-        message: "Required User!"
-    });
-  }
+//       res.status(403).send({
+//         message: "Required User!"
+//     });
+//   }
   
 
 

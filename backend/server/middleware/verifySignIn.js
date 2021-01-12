@@ -34,8 +34,10 @@ const checkDuplicateUsernameOrEmail = (req, res) => {
 };
 
 const checkIfUserExists = (req, res) => {
+  console.log(req.body.users)
   if (req.body.users) {
     // for (let i = 0; i < req.body.users.length; i++) {
+      
       if (User != req.params.userId) {
         res.status(400).send({
           message: "Failed! User does not exist" 

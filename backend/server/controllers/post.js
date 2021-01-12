@@ -1,6 +1,8 @@
 const db = require("../models");
+// const Post = require("../models/post");
 
 const { Post, User } = db;
+
 
 const createPost = async (req, res) => {
   try {
@@ -23,14 +25,13 @@ const createPost = async (req, res) => {
 };
 
 const getAllPosts = async (req, res) => {
-  console.log(posts);
-
+  
   try {
-    const posts = await Post.getAll({
+    console.log(Post)
+    const posts = await Post.findAll({
       attributes: ['title', 'content', 'favorite'],
     });
     console.log(posts);
-
     return res.status(200).json({ posts: posts });
   } catch (error) {
     return res.status(500).send(error.message);
@@ -79,20 +80,22 @@ const updatePost = async (req, res) => {
 };
 
 const deletePost = async (req, res) => {
-  console.log(id, "ID");
   try {
     const { postId } = req.params;
+    console.log(postId, "ID");
     console.log(req.params, "params");
     console.log(postId, "ID");
     const deleted = await db.Post.destroy({
       where: { id: postId },
     });
     if (deleted) {
-      return res.status(204).send("Post deleted");
+      return res.status(204).json("Post deleted");
     }
     throw new Error("Post not found");
   } catch (error) {
+    console.log(error.stack)
     return res.status(500).send(error.message);
+    
   }
 };
 

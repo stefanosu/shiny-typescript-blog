@@ -1,6 +1,8 @@
 const db = require("../models");
 const Post = require("../models/post");
 
+const config = require("../config/auth.config")
+
 const User = db.user;
 
 const jwt = require("jsonwebtoken");
@@ -10,7 +12,7 @@ const createUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
     console.log(User);
-    const data = await User.create({
+    const data = await db.User.create({
       username,
       email,
       password: bcrypt.hashSync(req.body.password),
@@ -27,20 +29,28 @@ const createUser = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    console.log(data)
-    console.log(db.User) //user is not defined??
+    // console.log(data) //data is undefined 
+    // console.log(db.User) //logs out User 
+    // console.log(userId)//userId is undefined
+    // console.log(req.body) // { username: 'steve', password: 'abc123' } logs out my user I signed in with
+    // console.log(req.body.id) //undefined 
+    // console.log(req.params.id) //undefined 
+    // console.log(email)//undefined 
+
+    const { username, password, email } = req.body;
     const { userId } = req.params;
-    const { username, password } = req.body;
-    
-    const data = await db.User.findOne({where: {id: userId},})
-    
-    if (!data) {
+
+    const userData = await db.User.findOne({where: {username} })
+    // console.log(userData)
+
+    if (!userData) {
       return res.status(404).send({ message: "User Not found." });
     }
       let passwordIsValid = bcrypt.compareSync(
         req.body.password,
-        user.password
+        userData.password
       );
+      console.log( req.body.password, userData.password, req.body.password === userData.password)
 
       if (!passwordIsValid) {
         return res.status(401).send({
@@ -49,22 +59,21 @@ const login = async (req, res) => {
         });
       }
 
-      var token = jwt.sign({ id: user.id }, config.secret, {
+      let token = jwt.sign({ id: userId }, config.secret, {
         expiresIn: 86400, // 24 hours
       });
-
-    
-      console.log(data);
+  
+      console.log(userData);
         res.status(200).send({
             id: userId,
-            username: user.username,
-            email: user.email,
+            username: userData.username,
+            email: userData.email,
             accessToken: token,
-            data
         });
       }
       
     catch (error) {
+        console.log(error.stack);
       return res.status(500).json({ error: error.message });
     }
 };
