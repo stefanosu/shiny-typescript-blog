@@ -2,7 +2,7 @@ import React from "react";
 // import PostType from './Types';
 
 
-interface SinglePost {
+export interface SinglePost {
   // post:PostType, 
   editPost: (id: number) => void;
   deletePost: (id: number) => void;

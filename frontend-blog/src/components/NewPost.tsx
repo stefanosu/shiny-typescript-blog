@@ -1,6 +1,6 @@
 import React from "react";
 
-interface NewPostProps  {
+export interface NewPostProps  {
   handleChange: (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
   savePost: (e:React.ChangeEvent<HTMLFormElement>) => void 
 }
