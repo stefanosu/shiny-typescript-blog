@@ -4,11 +4,22 @@ interface RequestProps<T> {
   url: RequestInfo;
   init?: RequestInit;
   processData?: (data: any) => T;
+  headers?:(data: any) => T;
 }
 
-export const useFetch = <T>({ url, init, processData }: RequestProps<T>) => {
+
+const headers = {
+  "Access-Control-Allow-Origin" : "*",
+  "Content-type": "application/json"
+}
+
+export const useFetch = <T>({ url, init, processData, headers }: RequestProps<T>) => {
   // Response state
+  
+
   const [data, setData] = useState<T>();
+
+
 
   // Turn objects into strings for useCallback & useEffect dependencies
   const [stringifiedUrl, stringifiedInit] = [JSON.stringify(url), JSON.stringify(init)];
@@ -39,7 +50,7 @@ export const useFetch = <T>({ url, init, processData }: RequestProps<T>) => {
     // Call async function
     fetchApi();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stringifiedUrl, stringifiedInit, processJson]);
+  }, [stringifiedUrl, stringifiedInit, processJson, headers]);
 
   return data;
 };
