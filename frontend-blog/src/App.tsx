@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
-import './App.css';
-import { HomePage } from './components/HomePage';
+import React from "react";
+import "./App.css";
+import { HomePage } from "./components/HomePage";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import DisplayAllPosts from "./components/AllPosts";
 
-
-  const App:React.FC = ()  => {
-
+const App: React.FC = () => {
   return (
-    <HomePage /> 
-    ) 
-}
-
+    <>
+      <Router>
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/allPosts" component={DisplayAllPosts} />
+        </Switch>
+      </Router>
+    </>
+  );
+};
 
 export default App;
-

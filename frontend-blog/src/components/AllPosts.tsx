@@ -35,9 +35,9 @@ const DisplayAllPosts = () => {
 
   }
 
-  useEffect(() => {
-    getAllPosts(postsData)
-  }, []);
+  // useEffect(() => {
+  //   getAllPosts()
+  // }, []);
 
 
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 
 export interface NewPostProps {
   handleChange: (
@@ -30,7 +31,10 @@ const NewPost = ({ savePost, handleChange }: NewPostProps) => {
       requestOptions
     );
     const data = await response.json();
-    setNewPost(data);
+    setNewPost(data); 
+    //after request I would like to redirect to another route to go to see all posts 
+    <Redirect to="/allPosts" />
+
   };
   
 
@@ -58,7 +62,7 @@ const NewPost = ({ savePost, handleChange }: NewPostProps) => {
       name="content"
     ></textarea>
 
-    <button type="submit">Save Post</button>
+    <button type="submit">Create Post</button>
   </form>);
 };
 
