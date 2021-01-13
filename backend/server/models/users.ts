@@ -1,17 +1,7 @@
-// const {sequelize, DataTypes} = require('sequelize');
+import Users from '../interfaces/users';
 
 
-// export interface UserAttributes {
-//   id?: number;
-//   username: string;
-//   email: string;
-//   password: string;
-//   createdAt?: Date;
-//   updatedAt?: Date;
-// };
-
-function userModel(sequelize, DataTypes) {
-  // console.log(sequelize);
+function userModel(sequelize: { define: (arg0: string, arg1: { username: { type: any; allowNull: { args: boolean; msg: string; }; }; email: { type: any; allowNull: { args: boolean; msg: string; }; unique: { args: boolean; msg: string; }; validate: { isEmail: { args: boolean; msg: string; }; }; }; password: { type: any; allowNull: { args: boolean; msg: string; }; validate: { isNotShort: (value: string | any[]) => void; }; }; }, arg2: {}) => any; }, DataTypes: { STRING: any; }) {
   const User = sequelize.define(
     "User",
     {
@@ -47,7 +37,7 @@ function userModel(sequelize, DataTypes) {
           msg: "Please enter a password",
         },
         validate: {
-          isNotShort: (value) => {
+          isNotShort: (value: string | any[]) => {
             if (value.length < 8) {
               throw new Error("Password should be at least 8 characters");
             }
@@ -57,7 +47,7 @@ function userModel(sequelize, DataTypes) {
     },
     {}
   );
-  User.associate = (models) => {
+  User.associate = (models: { Post: any; }) => {
     User.hasMany(models.Post, {
       foreignKey: "userId",
     });

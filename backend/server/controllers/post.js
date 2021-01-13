@@ -6,7 +6,9 @@ const { Post, User } = db;
 
 const createPost = async (req, res) => {
   try {
-    const { title, content, favorite, userId } = req.body;
+    console.log(req.params)
+    const { title, content, favorite } = req.body;
+    const { userId } = req.params;
     const postData = await Post.create({
       title,
       content,
@@ -17,6 +19,7 @@ const createPost = async (req, res) => {
       success: true,
       message: "Post successfully created",
       postData,
+      userId
     });
   } catch (error) {
     return res.status(500).json({ error: error.message });
