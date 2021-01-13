@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: {
           defaultValue: false,
         },
+        
       },
     },
     {}

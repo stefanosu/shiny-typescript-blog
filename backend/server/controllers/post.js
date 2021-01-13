@@ -6,8 +6,7 @@ const { Post, User } = db;
 
 const createPost = async (req, res) => {
   try {
-    const { title, content, favorite } = req.body;
-    const { userId } = req.params;
+    const { title, content, favorite, userId } = req.body;
     const postData = await Post.create({
       title,
       content,
@@ -29,7 +28,7 @@ const getAllPosts = async (req, res) => {
   try {
     console.log(Post)
     const posts = await Post.findAll({
-      attributes: ['title', 'content', 'favorite'],
+      attributes: ['title', 'content', 'favorite', 'userId'],
     });
     console.log(posts);
     return res.status(200).json({ posts: posts });
