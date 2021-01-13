@@ -71,11 +71,33 @@ body {
 
 .title {
   text-align: center;
-  color:black
+  color:black;
+
 }
 
 .btn-post {
-  color:black
+  color:black;
+  background-color:whitesmoke;
+  position: center;
+  cursor: pointer;
+  height: 50px;
+  margin: 0 0.3em 0.3em 0;
+  padding: 0.3em 1.2em; 
+  border: solid 5px black;
+  font: inherit;
+  display:inline-block;
+  border-radius: 1.5em;
+  box-sizing: border-box;
+  font-family:'Comic Sans', sans-serif;
+  font-weight: 200;
+  color: #ffffff; 
+  text-align: center; 
+  transition: all 0.2s; 
+}
+
+.btn-post:hover{
+  background-color:#4095c6;
+
 }
 
 /* @keyframes App-logo-spin {
