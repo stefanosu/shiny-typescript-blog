@@ -4,7 +4,6 @@ import { HomePage } from './components/HomePage';
 
 
   const App:React.FC = ()  => {
-  const [value, setValue] = useState('')
 
   return (
     <HomePage /> 
@@ -13,6 +12,4 @@ import { HomePage } from './components/HomePage';
 
 
 export default App;
-    {/* <NewPost handleChange={(param) => setValue(param.target.value)}
-    // savePost={(param) => setValue(param.target.value)}
-    // /> */}
+

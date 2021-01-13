@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import NewPost from "./NewPost";
 import Post from "./Post";
 import UpdatePost from "./UpdatePost"
-// import PostType from './Types';
+import { useForm } from "react-hook-form";
 
 interface PostType {
   title: string;
@@ -10,19 +10,34 @@ interface PostType {
   id: number;
 }
 
-// interface SinglePost {
-//   post:PostType  
-// }
 
 const DisplayAllPosts = () => {
-  const  [state, setState] = useState({title: '', content: ''});
+  const [state, setState] = useState({title: '', content: ''});
 
   const [allPosts, setAllPosts] = useState<PostType[]>([]);
-
 
   const [isCreateNewPost, setIsCreateNewPost] = useState(false);
   const [isUpdatePost, setIsUpdatePost] = useState(false);
   const [editPostId, setEditPostId] = useState(0);
+
+
+  const { register, handleSubmit, setValue, errors } = useForm<PostType>({});
+
+  
+  const getAllPosts = async (postsData: any) => {
+    const requestOptions = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify( postsData )
+    };
+    const response = await fetch("http://localhost:3000/api/getPosts", requestOptions);
+    const data = await response.json()
+
+  }
+
+  useEffect(() => {
+    getAllPosts(postsData)
+  }, []);
 
 
 

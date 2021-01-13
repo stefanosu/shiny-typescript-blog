@@ -1,25 +1,43 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useForm } from "react-hook-form";
-import { useFetch } from "./useFetch";
+// import {BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-export type Profile = {
+export interface Profile {
   username: string;
   email: string;
   password: string;
 };
 
-const UserRegister: React.FC<Profile> = () => {
-  const { register, handleSubmit, errors } = useForm<Profile>();
+const UserRegister: React.FC = () => {
+  const { register, handleSubmit, setValue, errors } = useForm<Profile>({});
+  const [newUser, setNewUser] = useState<Profile>();
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(JSON.stringify(data));
-  });
+  const onSubmit = handleSubmit((userData: any) => {
+    createNewUser(userData)
+  })
 
-  const data = useFetch<Profile>({
-    url: "http://localhost:3000/api/signUp"
-  });
+  
+  
+  const createNewUser = async (userData: any) => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify( userData )
+    };
+    const response = await fetch("http://localhost:3000/api/signUp", requestOptions);
+    const data = await response.json()
+    setNewUser(data);
+  }
 
+
+  
+  //   <Router> 
+  //   <Link to="/">Home</Link>
+  // <Router/>
+  
   return (
+    <>
+    
     <main>
       <form onSubmit={onSubmit}>
         <div>
@@ -55,7 +73,7 @@ const UserRegister: React.FC<Profile> = () => {
         <button type="submit">Save User</button>
       </form>
     </main>
-  );
-};
-
-export default UserRegister;
+    </>
+  )
+}
+export default UserRegister; 
