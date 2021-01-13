@@ -1,6 +1,6 @@
-// 'use strict';
+import Posts from '../interfaces/posts';
 
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize: { define: (arg0: string, arg1: { title: { type: any; allowNull: { args: boolean; msg: string; }; }; content: { type: any; allowNull: { args: boolean; msg: string; }; }; favorite: { type: any; allowNull: { defaultValue: boolean; }; }; }, arg2: {}) => any; }, DataTypes: { STRING: any; TEXT: any; BOOLEAN: any; }) => {
   const Post = sequelize.define(
     "Post",
     {
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
 
-  Post.associate = (models) => {
+  Post.associate = (models: { User: any; }) => {
     Post.belongsTo(models.User, {
       foreignKey: "userId",
       onDelete: "CASCADE",

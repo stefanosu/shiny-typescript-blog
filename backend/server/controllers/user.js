@@ -1,5 +1,4 @@
 const db = require("../models");
-const Post = require("../models/post");
 
 const config = require("../config/auth.config")
 
