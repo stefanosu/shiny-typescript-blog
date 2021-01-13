@@ -56,6 +56,7 @@ const UserLogin: React.FC<UserLoginProps> = (props: UserLoginProps) => {
           <div className='userlogin'>
             <label htmlFor="username">User Name</label>
             <input
+              data-testid="username"
               ref={register({ required: true })}
               id="username"
               name="username"
@@ -68,6 +69,7 @@ const UserLogin: React.FC<UserLoginProps> = (props: UserLoginProps) => {
           <div className='loginpw'>
             <label htmlFor="password">Password </label>
             <input
+              data-testid="password"
               ref={register({ required: true })}
               id="password"
               name="password"

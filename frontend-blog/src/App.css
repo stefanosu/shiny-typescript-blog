@@ -112,7 +112,7 @@ body {
 .reg-container {
   display: flex;
   justify-content: center;
-  background: #fff;
+  background: #ffffff;
   padding: 4rem;
   margin: 2rem;
   border-radius: 0.5rem;
@@ -148,19 +148,21 @@ body {
   box-sizing: border-box;
   text-align: center; 
   justify-content: center;
+  margin-left: 0.3em;
 }
 
 .sub-container {
 flex-basis: 10rem;
 height: 4em;
+width: 3.5em;
 margin: 3em;
 box-shadow: black;
 padding: 0.5em;
 }
 
 .login-form {
-  padding: 1rem;
-  margin: 0.5rem;
+  padding: 0.2rem;
+  margin: 0.2rem;
   position: center;
   justify-content: center;
 }
@@ -177,7 +179,8 @@ padding: 0.5em;
 }
 
 .form{
-  margin: 0.5rem;
+  margin: 0.2rem;
+  padding: 0.2rem;
   position: center;
   justify-content: center;
 }
