@@ -25,6 +25,16 @@
 
 body {
   background-color: rgb(252, 252, 230) ;
+    display: grid;
+    height: 100%;
+    width: 100%;
+    place-items: center;
+    background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+}
+
+::selection{
+  background: #fa4299;
+  color: #fff;
 }
 
 .container {
@@ -97,14 +107,92 @@ body {
 
 .btn-post:hover{
   background-color:#4095c6;
+}
+
+.reg-container {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  padding: 4rem;
+  margin: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+}
+
+.log-container {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  padding: 5rem;
+  margin: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
 
 }
 
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+.sub-container {
+flex-basis: 10rem;
+height: 5em;
+margin: 5px;
+box-shadow: black;
+padding: 0.5em;
+}
+
+.login-form {
+  padding: 1rem;
+  margin: 0.5rem;
+  position: center;
+  justify-content: center;
+}
+
+.userlogin {
+  padding: 0.2rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  margin: 0.2rem;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+  text-align: center;
+  color:black;
+}
+
+.form{
+  margin: 0.5rem;
+  position: center;
+  justify-content: center;
+}
+
+.loginpw{
+  text-align: center;
+  color:black;
+}
+
+
+.password{
+  text-align: center;
+  color:black;
+}
+
+.username{
+  text-align: center;
+  color:black;
+}
+
+.email{
+  text-align: center;
+  color:black;
+}
+
+
+.email{
+  text-align: center;
+  color:black;
+}
+
+.main {
+flex-basis: 10rem;
+height: 5em;
+margin: 5px;
+padding: 0.5em;
+box-shadow: black;
+}

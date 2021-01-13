@@ -3,6 +3,7 @@ import UserRegister from './UserRegister';
 import NewPost from './NewPost';
 import UserLogin from './UserLogin';
 import { BrowserRouter as Router,Switch, Route, Link } from "react-router-dom";
+import LogOut from './LogOut';
 
 
 export const HomePage: React.FC = () => {
@@ -21,29 +22,17 @@ export const HomePage: React.FC = () => {
     if (response !== null)
       setLoginStatus(true);
   }
+
+  
   return (
     <>
-      {/* <Router >
-      
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/topics">Topics</Link>
-          </li>
-          <Router /> */}
-
-
         { isLoggedIn ? 
         // new posts 
-        <NewPost />
+        <NewPost /> 
         :<>
         <UserRegister  />
         <UserLogin onLogin={updateLoginStatus} onLogout={updateLoginStatus} />
+        <LogOut onLogout={updateLoginStatus}/>
         </>
         }
   </>
