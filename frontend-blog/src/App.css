@@ -130,10 +130,30 @@ body {
 
 }
 
+.header {
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.btn {
+  color:black;
+  cursor: pointer;
+  padding-top: 0.5em;
+  height: 2rem;
+  padding: 0.2em 0.3em; 
+  border: solid 2px;
+  font: inherit;
+  display:inline-block;
+  border-radius: 1em;
+  box-sizing: border-box;
+  text-align: center; 
+  justify-content: center;
+}
+
 .sub-container {
 flex-basis: 10rem;
-height: 5em;
-margin: 5px;
+height: 4em;
+margin: 3em;
 box-shadow: black;
 padding: 0.5em;
 }

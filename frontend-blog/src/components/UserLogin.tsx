@@ -49,9 +49,10 @@ const UserLogin: React.FC<UserLoginProps> = (props: UserLoginProps) => {
 
   return (
     <>
+    
     <div className='log-container'> 
       <main className='main'>
-        <form className='login-form' onSubmit={onSubmit}>
+        <form className='login-form' onSubmit={onSubmit}><span className='header'>Welcome Log Back In!</span>
           <div className='userlogin'>
             <label htmlFor="username">User Name</label>
             <input
@@ -76,7 +77,7 @@ const UserLogin: React.FC<UserLoginProps> = (props: UserLoginProps) => {
               <div className="error">Enter your password</div>
               )}
           </div>
-          <button className='logbtn' type="submit">Login</button>
+          <button className='btn' type="submit">Login</button>
         </form>
       </main>
     </div>

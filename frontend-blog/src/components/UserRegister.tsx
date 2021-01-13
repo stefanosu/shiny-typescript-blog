@@ -43,8 +43,8 @@ const UserRegister: React.FC = () => {
   return (
     <>
       <div className='reg-container'>
-        <main className='sub-container'>
-          <form className='form' onSubmit={onSubmit}>
+        <main className='sub-container'><span className='header'>Sign Up!</span>
+          <form className='form' onSubmit={onSubmit}> 
             <div className='username'>
               <label htmlFor="username">User Name</label>
               <input
@@ -77,7 +77,7 @@ const UserRegister: React.FC = () => {
               />
               {errors.email && <div className="error">Enter your email</div>}
             </div>
-            <button className='registerbtn' type="submit">Register User</button>
+            <button className='btn' type="submit">Register User</button>
           </form>
         </main>
       </div>
