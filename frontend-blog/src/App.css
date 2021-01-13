@@ -23,11 +23,66 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+body {
+  background-color: rgb(252, 252, 230) ;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inner {
+  width: 40%;
+  height: 40%;
+}
+
+.post-form {
+  display: flex;
+  background: #2aa6cc;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 0.5rem;
+  position: center;
+  border: 1px solid firebrick;
+  justify-content: center;
+}
+
+.input {
+  padding: 0.2rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  margin: 0.2rem;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+
+}
+
+.content-form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 0.5rem;
+  position: center;
+  justify-content: center;
+
+} 
+
+.title {
+  text-align: center;
+  color:black
+}
+
+.btn-post {
+  color:black
+}
+
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
