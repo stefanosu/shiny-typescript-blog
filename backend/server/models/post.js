@@ -1,6 +1,6 @@
-import Posts from '../interfaces/posts';
+// import Posts from '../interfaces/posts';
 
-module.exports = (sequelize: { define: (arg0: string, arg1: { title: { type: any; allowNull: { args: boolean; msg: string; }; }; content: { type: any; allowNull: { args: boolean; msg: string; }; }; favorite: { type: any; allowNull: { defaultValue: boolean; }; }; }, arg2: {}) => any; }, DataTypes: { STRING: any; TEXT: any; BOOLEAN: any; }) => {
+module.exports = (sequelize, DataTypes ) => {
   const Post = sequelize.define(
     "Post",
     {
@@ -29,7 +29,7 @@ module.exports = (sequelize: { define: (arg0: string, arg1: { title: { type: any
     {}
   );
 
-  Post.associate = (models: { User: any; }) => {
+  Post.associate = (models) => {
     Post.belongsTo(models.User, {
       foreignKey: "userId",
       onDelete: "CASCADE",

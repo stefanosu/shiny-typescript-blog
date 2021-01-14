@@ -1,7 +1,6 @@
-import Users from '../interfaces/users';
+// import Users from '../interfaces/users';
 
-
-function userModel(sequelize: { define: (arg0: string, arg1: { username: { type: any; allowNull: { args: boolean; msg: string; }; }; email: { type: any; allowNull: { args: boolean; msg: string; }; unique: { args: boolean; msg: string; }; validate: { isEmail: { args: boolean; msg: string; }; }; }; password: { type: any; allowNull: { args: boolean; msg: string; }; validate: { isNotShort: (value: string | any[]) => void; }; }; }, arg2: {}) => any; }, DataTypes: { STRING: any; }) {
+function userModel(sequelize, DataTypes) {
   const User = sequelize.define(
     "User",
     {
@@ -37,7 +36,7 @@ function userModel(sequelize: { define: (arg0: string, arg1: { username: { type:
           msg: "Please enter a password",
         },
         validate: {
-          isNotShort: (value: string | any[]) => {
+          isNotShort: (value) => {
             if (value.length < 8) {
               throw new Error("Password should be at least 8 characters");
             }
@@ -47,7 +46,7 @@ function userModel(sequelize: { define: (arg0: string, arg1: { username: { type:
     },
     {}
   );
-  User.associate = (models: { Post: any; }) => {
+  User.associate = (models) => {
     User.hasMany(models.Post, {
       foreignKey: "userId",
     });

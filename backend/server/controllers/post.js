@@ -8,7 +8,7 @@ const createPost = async (req, res) => {
   try {
     console.log(userId)
     const { title, content, favorite, userId } = req.body;
-    const { userId }
+    // const { userId }
     const postData = await Post.create({
       title,
       content,
