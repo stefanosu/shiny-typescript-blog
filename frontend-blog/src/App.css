@@ -49,14 +49,17 @@ body {
 }
 
 .post-form {
-  display: flex;
-  background: #2aa6cc;
-  flex-direction: column;
-  padding: 1rem;
-  margin: 0.5rem;
-  position: center;
-  border: 1px solid firebrick;
-  justify-content: center;
+display: flex;
+background: #2aa6cc;
+flex-direction: column;
+padding: 1rem;
+margin: 0.5rem;
+position: relative;
+border: 1px solid firebrick;
+justify-content: center;
+width: 25rem;
+height: 20rem;
+align-items: center;
 }
 
 .input {
@@ -88,10 +91,11 @@ body {
 .btn-post {
   color:black;
   background-color:whitesmoke;
-  position: center;
   cursor: pointer;
-  height: 50px;
+  height: 4rem;
+  width: 15em;
   margin: 0 0.3em 0.3em 0;
+  margin-left: 2em;
   padding: 0.3em 1.2em; 
   border: solid 5px black;
   font: inherit;
