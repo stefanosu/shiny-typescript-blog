@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-  Redirect,
-} from "react-router-dom";
+// import { Button, TextField } from "material-ui";
 
 export interface NewPostProps {
   handleChange: (
@@ -23,7 +17,8 @@ const NewPost = ({ savePost, handleChange }: NewPostProps) => {
 
   const [newPost, setNewPost] = useState<NewPostProps>();
 
-  const onSubmit = handleSubmit((postData: any) => {
+  const onSubmit = handleSubmit((postData: any) => { 
+    // props.history.push('/')
     createNewPost(postData);
   });
 
@@ -38,10 +33,10 @@ const NewPost = ({ savePost, handleChange }: NewPostProps) => {
     const response = await fetch(
       "http://localhost:3000/api/createPosts",
       requestOptions
-    );
+      );
     const data = await response.json();
-    setNewPost(data);
-    //after request I would like to redirect to another route to go to see all posts
+    setNewPost(data)
+    //after post request I would like to redirect to user to go to see all their posts
     // if(submitted) {
     //   return <Redirect push to={{
     //     pathname: '/allPosts'
