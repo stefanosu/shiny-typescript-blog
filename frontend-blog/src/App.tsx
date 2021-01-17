@@ -8,6 +8,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
+
 import DisplayAllPosts from "./components/AllPosts";
 
 const App: React.FC = () => {

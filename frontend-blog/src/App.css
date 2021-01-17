@@ -39,8 +39,8 @@ body {
 
 .container {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
 }
 
 .inner {
@@ -95,7 +95,6 @@ align-items: center;
   height: 4rem;
   width: 15em;
   margin: 0 0.3em 0.3em 0;
-  margin-left: 2em;
   padding: 0.3em 1.2em; 
   border: solid 5px black;
   font: inherit;
