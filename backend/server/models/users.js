@@ -49,9 +49,8 @@ function userModel(sequelize, DataTypes) {
   User.associate = (models) => {
     User.hasMany(models.Post, {
       foreignKey: "userId",
-    });
-    return User;
-    // define association here
+      as: 'posts',
+    });    // define association here
   };
 
   return User;
