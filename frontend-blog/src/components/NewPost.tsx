@@ -25,9 +25,11 @@ const NewPost = ({ savePost, handleChange }: NewPostProps) => {
   const createNewPost = async (postData: any) => {
     console.log(postData);
     const userId = localStorage.getItem("user") || "";
+    
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      Authorization: `Bearer${userInfo.token}`,
       body: JSON.stringify({ ...postData, userId }),
     };
     const response = await fetch(

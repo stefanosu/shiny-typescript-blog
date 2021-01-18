@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import NewPost from "./NewPost";
 import Post from "./Post";
-import UpdatePost from "./UpdatePost"
+import UpdatePost from "./UpdatePost";
 import { useForm } from "react-hook-form";
 
 interface PostData {
@@ -11,83 +11,57 @@ interface PostData {
   favorite: boolean;
 }
 
-// interface Posts {
-//   list: PostData[]; 
-// }
-
-
 const DisplayAllPosts: React.FC = () => {
-
-  // const [allPosts, setAllPosts] = useState();
-
-  // const [isCreateNewPost, setIsCreateNewPost] = useState(false);
-  // const [isUpdatePost, setIsUpdatePost] = useState(false);
-  // const [editPostId, setEditPostId] = useState(0);
-
-
-  const [posts, setPosts] = useState({})
+  const [posts, setPosts] = useState({});
 
   const { register, handleSubmit, setValue, errors } = useForm<PostData>({});
 
-
-    const fetchAllPosts = async () => {
+  const fetchAllPosts = async () => {
     // useEffect(() => {
-      // let isActive = true;
-      const requestOptions = {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      };
-    
-      const response = await fetch("http://localhost:3000/api/getPosts", requestOptions);
-      const data = await response.json()
-          // if (isActive) {
-          //   setList(data.response);
-          // }
-            setPosts(data)
-            console.log(posts)
-          
-    }
-          // for(let post in posts) {
-          //   let postObj = posts
-          //   console.log(postObj)
-          // }
-    
+    // let isActive = true;
+    const requestOptions = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    };
 
-    useEffect(() => {
-      fetchAllPosts()
-    }, [])
+    const response = await fetch(
+      "http://localhost:3000/api/getPosts",
+      requestOptions
+    );
+    const data = await response.json();
+    // if (isActive) {
+    //   setList(data.response);
+    // }
+    setPosts(data);
+    console.log(posts);
+  };
 
-  
+  useEffect(() => {
+    fetchAllPosts();
+  }, []);
 
-    return ( 
-      <>
-        <h3> List of the Posts</h3> 
-          <ul>
-          {/* {posts.map((post) => {
+  return (
+    <>
+      <h3> List of the Posts</h3>
+      <ul>
+        {/* {posts.map((post) => {
             return console.log(post)
           }) */}
-          {/* }  */}
-        </ul>
-      </>
-    )
+        {/* }  */}
+      </ul>
+    </>
+  );
 
-
-
-    // const getAllPosts = async (postsData: any) => {
-    //   const requestOptions = {
-    //     method: 'GET',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify( postsData )
-    //   };
-    //   const response = await fetch("http://localhost:3000/api/getPosts", requestOptions);
-    //   const data = await response.json()
-    //   console.log(data)
-    //   }
-
-  
-
-      
-
+  // const getAllPosts = async (postsData: any) => {
+  //   const requestOptions = {
+  //     method: 'GET',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify( postsData )
+  //   };
+  //   const response = await fetch("http://localhost:3000/api/getPosts", requestOptions);
+  //   const data = await response.json()
+  //   console.log(data)
+  //   }
 
   // const toggleCreateNewPost = () => {
   //   setIsCreateNewPost(!isCreateNewPost);
@@ -100,7 +74,7 @@ const DisplayAllPosts: React.FC = () => {
   //     setIsUpdatePost(!isUpdatePost)
   //     const post = allPosts.find(post => {
   //       return post.id === editPostId;
-  //     }); 
+  //     });
   //     if(post) {
   //       setState(post)
   //     }
@@ -112,14 +86,11 @@ const DisplayAllPosts: React.FC = () => {
   //   toggleUpdatePostComponent();
   // };
 
-
   // const deletePost = (id:number) => {
   //   // setDeletePost(id);
   //   setAllPosts(allPosts.filter( post => post.id !== id ));
 
   // };
-
-
 
   // const updatePost = (e:React.ChangeEvent) => {
   //   e.preventDefault();
@@ -160,7 +131,7 @@ const DisplayAllPosts: React.FC = () => {
   //   );
   // }
   // else if (isUpdatePost) {
-    
+
   //   return (
   //     <UpdatePost
   //       title={state.title}
@@ -196,6 +167,5 @@ const DisplayAllPosts: React.FC = () => {
   //     <button onClick={toggleCreateNewPost}>Create New</button>
   //   </>
   // );
-  
-  }
+};
 export default DisplayAllPosts;
