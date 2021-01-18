@@ -9,10 +9,11 @@ interface PostData {
   content: string;
   id: number;
   favorite: boolean;
+  // posts:any[];
 }
 
 const DisplayAllPosts: React.FC = () => {
-  const [posts, setPosts] = useState({});
+  const [posts, setPosts] = useState([] as any);
 
   const { register, handleSubmit, setValue, errors } = useForm<PostData>({});
 
@@ -43,14 +44,17 @@ const DisplayAllPosts: React.FC = () => {
   return (
     <>
       <h3> List of the Posts</h3>
-      <ul>
-        {/* {posts.map((post) => {
-            return console.log(post)
-          }) */}
-        {/* }  */}
-      </ul>
-    </>
-  );
+      <ul> 
+        <h3>All posts</h3>
+        {
+          // posts.title.map((post: { title: any; }) => {
+          //   return console.log(post.title)
+            <h5>post titles</h5>
+            } 
+            </ul>    
+          </>
+          ) 
+  // );
 
   // const getAllPosts = async (postsData: any) => {
   //   const requestOptions = {

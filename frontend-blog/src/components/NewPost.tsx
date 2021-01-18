@@ -18,18 +18,17 @@ const NewPost = ({ savePost, handleChange }: NewPostProps) => {
   const [newPost, setNewPost] = useState<NewPostProps>();
 
   const onSubmit = handleSubmit((postData: any) => { 
-    // props.history.push('/')
     createNewPost(postData);
   });
 
   const createNewPost = async (postData: any) => {
     console.log(postData);
     const userId = localStorage.getItem("user") || "";
-    
+    const { userInfo } = localStorage.user  
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      Authorization: `Bearer${userInfo.token}`,
+      Authorization: `Bearer${userInfo}`,
       body: JSON.stringify({ ...postData, userId }),
     };
     const response = await fetch(
