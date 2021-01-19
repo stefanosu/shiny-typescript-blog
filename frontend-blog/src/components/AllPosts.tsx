@@ -9,17 +9,16 @@ interface PostData {
   content: string;
   id: number;
   favorite: boolean;
-  // posts:any[];
+  
+
 }
 
 const DisplayAllPosts: React.FC = () => {
-  const [posts, setPosts] = useState([] as any);
-
+  const [posts, setPosts] = useState<PostData>([]);
+  console.log(posts)
   const { register, handleSubmit, setValue, errors } = useForm<PostData>({});
 
   const fetchAllPosts = async () => {
-    // useEffect(() => {
-    // let isActive = true;
     const requestOptions = {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -30,30 +29,30 @@ const DisplayAllPosts: React.FC = () => {
       requestOptions
     );
     const data = await response.json();
-    // if (isActive) {
-    //   setList(data.response);
-    // }
+  
     setPosts(data);
-    console.log(posts);
   };
 
   useEffect(() => {
     fetchAllPosts();
   }, []);
 
+  const mapOverPosts = () => (
+    posts.map((post: any[]) => (
+      <li>{post.title}</li>
+  )) 
+  )
+
+  
+
   return (
     <>
       <h3> List of the Posts</h3>
       <ul> 
-        <h3>All posts</h3>
-        {
-          // posts.title.map((post: { title: any; }) => {
-          //   return console.log(post.title)
-            <h5>post titles</h5>
-            } 
-            </ul>    
-          </>
-          ) 
+          {mapOverPosts()}
+      </ul>    
+    </>
+    ) 
   // );
 
   // const getAllPosts = async (postsData: any) => {

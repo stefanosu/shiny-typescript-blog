@@ -6,8 +6,6 @@ import { BrowserRouter as Router,Switch, Route, Link } from "react-router-dom";
 import LogOut from './LogOut';
 import AllPosts from './AllPosts'
 
-
-
 export const HomePage: React.FC = () => {
   const [isLoggedIn, setLoginStatus] = useState(false);
 
