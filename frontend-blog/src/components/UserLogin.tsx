@@ -13,6 +13,7 @@ export interface UserLoginProps {
 
 
 const UserLogin: React.FC<UserLoginProps> = (props: UserLoginProps) => {
+  const [user, setUser ] = useState()
   const { onLogin, onLogout } = props;
   const { register, handleSubmit, setValue, errors } = useForm<UserInformation>(
     {}
@@ -36,6 +37,7 @@ const UserLogin: React.FC<UserLoginProps> = (props: UserLoginProps) => {
     if (data.accessToken) {
       localStorage.setItem("user", JSON.stringify(data));
       onLogin(true);
+      setUser(data)
       console.log(localStorage);
     }
   };

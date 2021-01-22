@@ -1,160 +1,85 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import NewPost from "./NewPost";
 import Post from "./Post";
-import UpdatePost from "./UpdatePost"
+import UpdatePost from "./UpdatePost";
 import { useForm } from "react-hook-form";
 
-interface PostType {
+interface PostData {
   title: string;
   content: string;
   id: number;
+  favorite: boolean;
+}
+
+export interface PostRemove {
+  deletePosts:  (e: React.ChangeEvent<HTMLFormElement>) => void;
+  onClick: React.MouseEventHandler;
+
 }
 
 
-const DisplayAllPosts = () => {
-  const [state, setState] = useState({title: '', content: ''});
+const DisplayAllPosts = ( ) => {
+  const [posts, setPosts] = useState<PostData[]>([]);
+  console.log(posts)
 
-  const [allPosts, setAllPosts] = useState<PostType[]>([]);
+  const { register, handleSubmit, setValue, errors } = useForm<PostData>();
 
-  const [isCreateNewPost, setIsCreateNewPost] = useState(false);
-  const [isUpdatePost, setIsUpdatePost] = useState(false);
-  const [editPostId, setEditPostId] = useState(0);
-
-
-  const { register, handleSubmit, setValue, errors } = useForm<PostType>({});
-
-  
-  const getAllPosts = async (postsData: any) => {
+  const fetchAllPosts = async () => {
     const requestOptions = {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify( postsData )
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
     };
-    const response = await fetch("http://localhost:3000/api/getPosts", requestOptions);
+
+    const response = await fetch(
+      "http://localhost:3000/api/getPosts",
+      requestOptions
+    );
+    const data = await response.json();
+  
+    setPosts(data.posts);
+  };
+
+  const deletePosts = async (e: React.ChangeEvent<HTMLFormElement>,  post: { id: number; }, id: number) => {
+    const requestOptions = {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    };
+    const response = await fetch(`http://localhost:3000/api/deletePost${post.id}`, requestOptions)
     const data = await response.json()
-
+    console.log('delete' , e, data)
   }
 
-  // useEffect(() => {
-  //   getAllPosts()
-  // }, []);
+  useEffect(() => {
+    fetchAllPosts();
+  }, []);
 
 
-
-  const handleChange = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {name, value} = e.target
-    setState((s) => ({
-      ...s,  
-      [name]: value
-    }))
-  }
-
-  const toggleCreateNewPost = () => {
-    setIsCreateNewPost(!isCreateNewPost);
-  };
-  const toggleUpdatePostComponent = () => {
-    if(isUpdatePost) {
-      setIsUpdatePost(!isUpdatePost)
-      setState({title: '', content:""})
-    } else {
-      setIsUpdatePost(!isUpdatePost)
-      const post = allPosts.find(post => {
-        return post.id === editPostId;
-      }); 
-      if(post) {
-        setState(post)
-      }
-    }
-  }
-  const editPost = (id:number) => {
-    setEditPostId(id);
-    console.log(id)
-    toggleUpdatePostComponent();
-  };
-
-
-  const deletePost = (id:number) => {
-    // setDeletePost(id);
-    setAllPosts(allPosts.filter( post => post.id !== id ));
-
-  };
-
-
-
-  const updatePost = (e:React.ChangeEvent) => {
-    e.preventDefault();
-    const updatedPost = allPosts.map(eachPost => {
-      if (eachPost.id === editPostId) {
-        console.log([eachPost.id, editPostId] )
-        return {
-          ...eachPost,
-          title: state.title || eachPost.title,
-          content: state.content || eachPost.content
-        };
-      }
-      console.log(eachPost)
-      return eachPost;
-    });
-    setAllPosts(updatedPost);
-    toggleUpdatePostComponent();
-  };
-
-  const savePost = (e: React.ChangeEvent)=> {
-    e.preventDefault();
-    debugger
-    const id = Date.now();
-    setAllPosts([...allPosts, { title: state.title, content: state.content, id}]);
-    console.log(allPosts);
-    setState({title: '', content: ''});
-    toggleCreateNewPost();
-  };
-
-  if (isCreateNewPost) {
-    return (
-      <>
-        <NewPost
-          handleChange={handleChange}
-          savePost={savePost}
-        />
-      </>
-    );
-  }
-  else if (isUpdatePost) {
-    
-    return (
-      <UpdatePost
-        title={state.title}
-        content={state.content}
-        updatePost={updatePost}
-        handleChange={handleChange}
-      />
-    );
-  }
   return (
     <>
-      <h2>All Posts</h2>
-      {!allPosts.length ? (
-        <div>
-          <h3>There is nothing to see here!</h3>
-        </div>
-      ) : (
-        allPosts.map(eachPost => {
-          return (
-            <Post
-              id={eachPost.id}
-              key={eachPost.id}
-              title={eachPost.title}
-              content={eachPost.content}
-              deletePost={deletePost}
-              editPost={editPost}
-            />
-          );
-        })
-      )}
-      <br />
-      <br />
-      <button onClick={toggleCreateNewPost}>Create New</button>
-    </>
-  );
+      <h3 className='post-header'> List of the Posts</h3>
+      {
+        posts.map((post => (
+          <div className='post-container' key={post.id}>
+              <h3 className='title'>{post.title}</h3> 
+              <p className='post-content'>{post.content}</p>
+            <button onClick={() => deletePosts} className='post-btn'>Delete Post</button>
+          </div>
+        )))
+      }  
+      </>
+    ) 
+
+
 };
+
+
+// PostRemove.defaultProps = {
+//   handleChange: () => {},
+//   deletePosts: () => {},
+// };
+
 export default DisplayAllPosts;
+function e(e: any): void {
+  throw new Error("Function not implemented.");
+}
+

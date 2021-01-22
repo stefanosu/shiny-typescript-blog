@@ -6,9 +6,8 @@ const { Post, User } = db;
 
 const createPost = async (req, res) => {
   try {
-    console.log(userId)
     const { title, content, favorite, userId } = req.body;
-    const { userId }
+    console.log(userId)
     const postData = await Post.create({
       title,
       content,
@@ -19,8 +18,9 @@ const createPost = async (req, res) => {
       success: true,
       message: "Post successfully created",
       postData,
-      userId
     });
+    console.log(postData)
+    // console.log(userId)
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -91,7 +91,7 @@ const deletePost = async (req, res) => {
       where: { id: postId },
     });
     if (deleted) {
-      return res.status(204).json("Post deleted");
+      return res.status(204).send( { message: "Post deleted" });
     }
     throw new Error("Post not found");
   } catch (error) {

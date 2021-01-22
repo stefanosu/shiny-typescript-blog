@@ -3,7 +3,6 @@ import React from "react";
 
 
 export interface SinglePost {
-  // post:PostType, 
   editPost: (id: number) => void;
   deletePost: (id: number) => void;
   title: string;
@@ -11,13 +10,6 @@ export interface SinglePost {
   id: number;
 }
 
-// interface PostProps {
-//   title: string;
-//   content: string;
-//   id: number;
-//   editPost: (id: number) => void;
-//   deletePost: (id: number) => void;
-// }
 
 const Post = ({ title, content, id, editPost, deletePost }: SinglePost) => (
   <section>

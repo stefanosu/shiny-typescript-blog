@@ -40,7 +40,7 @@ const login = async (req, res) => {
     const { userId } = req.params;
 
     const userData = await db.User.findOne({where: {username} })
-    // console.log(userData)
+    console.log(userData)
 
     if (!userData) {
       return res.status(404).send({ message: "User Not found." });
