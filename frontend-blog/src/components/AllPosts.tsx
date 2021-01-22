@@ -62,7 +62,7 @@ const DisplayAllPosts = ( ) => {
           <div className='post-container' key={post.id}>
               <h3 className='title'>{post.title}</h3> 
               <p className='post-content'>{post.content}</p>
-            <button onClick={() => deletePosts(e, post: { id: number; }, id: number)} className='post-btn'>Delete Post</button>
+            <button onClick={() => deletePosts} className='post-btn'>Delete Post</button>
           </div>
         )))
       }  
