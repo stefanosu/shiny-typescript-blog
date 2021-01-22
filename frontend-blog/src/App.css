@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 
 .App-header {
   background-color: #282c34;
@@ -221,4 +216,34 @@ height: 5em;
 margin: 5px;
 padding: 0.5em;
 box-shadow: black;
+}
+
+
+.post-container {
+  display: grid;
+  position: relative;
+}
+
+.post-content {
+  text-align: center;
+}
+
+
+.post-btn {
+  color:black;
+  cursor: pointer;
+  padding: 0.2em 0.3em; 
+  font: inherit;
+  display:inline-block;
+  border-radius: 0.5em;
+  text-align: center; 
+  width: 5em;
+  height: 3em;
+  margin-left: 7em;
+
+}
+
+
+.post-header {
+  text-align: center;
 }

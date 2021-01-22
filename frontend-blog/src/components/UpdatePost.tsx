@@ -6,6 +6,7 @@ interface UpdatePostProps  {
   updatePost: (e:React.ChangeEvent<HTMLFormElement>) => void;
   title: string;
   content: string;
+  favorite: boolean;
 }
 
 const UpdatePost = ({updatePost, handleChange, content, title}:UpdatePostProps) => 

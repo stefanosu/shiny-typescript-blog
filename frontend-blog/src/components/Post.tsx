@@ -3,7 +3,6 @@ import React from "react";
 
 
 export interface SinglePost {
-  // post:PostType, 
   editPost: (id: number) => void;
   deletePost: (id: number) => void;
   title: string;
