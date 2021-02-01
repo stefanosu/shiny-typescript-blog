@@ -36,9 +36,7 @@ const UserRegister: React.FC = () => {
     setNewUser(data);
   };
 
-  //   <Router>
-  //   <Link to="/">Home</Link>
-  // <Router/>
+
 
   return (
     <>

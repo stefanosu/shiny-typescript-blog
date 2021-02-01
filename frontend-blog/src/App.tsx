@@ -9,7 +9,7 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import DisplayAllPosts from "./components/AllPosts";
+import DisplayAllPosts from "./components/DisplayAllPosts";
 
 const App: React.FC = () => {
   return (

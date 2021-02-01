@@ -4,7 +4,7 @@ import NewPost from './NewPost';
 import UserLogin from './UserLogin';
 import { BrowserRouter as Router,Switch, Route, Link } from "react-router-dom";
 import LogOut from './LogOut';
-import AllPosts from './AllPosts'
+import DisplayAllPosts from './DisplayAllPosts'
 
 export const HomePage: React.FC = () => {
   const [isLoggedIn, setLoginStatus] = useState(false);
@@ -28,7 +28,7 @@ export const HomePage: React.FC = () => {
     <>
         { isLoggedIn ? 
         // new posts 
-        <AllPosts /> 
+        <DisplayAllPosts /> 
         :<>
         <UserRegister  />
         <UserLogin onLogin={updateLoginStatus} onLogout={updateLoginStatus} />
