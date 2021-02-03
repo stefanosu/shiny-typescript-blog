@@ -65,24 +65,19 @@ const DisplayAllPosts = () => {
   // }, []);
 
 
-  // return (
-  //   <>
-  //   <h4>Posts</h4>
-  //     </>
-  //   ) 
 
-};
+    return ( 
 
-
-      // {/* {/* <h3 className='post-header'> List of the Posts</h3> */}
-      // { 
-      //   posts.map((post => (
-      //     <div className='post-container' key={post.id}>
-      //         <h3 className='title'>{post.title}</h3> 
-      //         <p className='post-content'>{post.content}</p>
-      //       {/* <button onClick={() => deletePosts(post.id)} className='post-btn'>Delete Post</button> */}
-      //     {/* </div> */}
-      //   // )))
-      // // }   */}
-
-export default DisplayAllPosts 
+      { 
+        posts.map((post => (
+          <div className='post-container' key={post.id}>
+              <h3 className='title'>{post.title}</h3> 
+              <p className='post-content'>{post.content}</p>
+            {/* <button onClick={() => deletePosts(post.id)} className='post-btn'>Delete Post</button> */}
+          </div>
+        )))
+      }
+    )  
+  }
+    
+export default DisplayAllPosts;

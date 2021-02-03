@@ -1,52 +1,62 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-// import { Button, TextField } from "material-ui";
+// import { updatePost, deletePost } from '../API';
 
-export interface NewPostProps {
-  handleChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
-  savePost: (e: React.ChangeEvent<HTMLFormElement>) => void;
+// export interface NewPostProps {
+//   handleChange: (
+//     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+//   ) => void;
+//   savePost: (e: React.ChangeEvent<HTMLFormElement>) => void;
+// }
+
+type Props = PostProps & {
+  updatePost: (post: PostObj) => void 
+  deletePost: (id: string) => void
 }
 
-const NewPost = ({ savePost, handleChange }: NewPostProps) => {
+const NewPost: React.FC<Props> = ({ post, updatePost, deletePost }) => {
   const [submitted, setSubmitted] = useState(false);
-  const { register, handleSubmit, setValue, errors } = useForm<NewPostProps>(
+  const { register, handleSubmit, setValue, errors } = useForm<>(
     {}
   );
 
-  const [newPost, setNewPost] = useState<NewPostProps>();
+  // const [newPost, setNewPost] = useState<>();
+
+
+  const handleChange = () => {
+    console.log('post info')
+  }
 
   const onSubmit = handleSubmit((postData: any) => { 
     createNewPost(postData);
   });
 
-  const createNewPost = async (postData: any) => {
-    console.log(postData);
-    const userId = localStorage.getItem("user") || "";
-    const { userInfo } = localStorage.user  
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      Authorization: `Bearer${userInfo}`,
-      body: JSON.stringify({ ...postData, userId }),
-    };
-    const response = await fetch(
-      "http://localhost:3000/api/createPosts",
-      requestOptions
-      );
-    const data = await response.json();
-    setNewPost(data)
+  // const createNewPost = async (postData: any) => {
+  //   console.log(postData);
+  //   const userId = localStorage.getItem("user") || "";
+  //   const { userInfo } = localStorage.user  
+  //   const requestOptions = {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     Authorization: `Bearer${userInfo}`,
+  //     body: JSON.stringify({ ...postData, userId }),
+  //   };
+  //   const response = await fetch(
+  //     "http://localhost:3000/api/createPosts",
+  //     requestOptions
+  //     );
+
+  //   const data = await response.json();
+  //   setNewPost(data)
     //after post request I would like to redirect to user to go to see all their posts
     // if(submitted) {
     //   return <Redirect push to={{
     //     pathname: '/allPosts'
     //   }}
     // }
-  };
 
   return (
-    <div className="container">
+    <div className="form-container">
       <div className='inner'>  
       <form className="post-form" onSubmit={onSubmit}>
         <h1 className='title'>Create New Post</h1>
@@ -75,11 +85,6 @@ const NewPost = ({ savePost, handleChange }: NewPostProps) => {
     </div>
     </div>
   );
-};
-
-NewPost.defaultProps = {
-  handleChange: () => {},
-  savePost: () => {},
 };
 
 export default NewPost;

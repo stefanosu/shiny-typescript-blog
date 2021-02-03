@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios"
 
 const baseUrl: string = "http://localhost:3000"
 
+
 export const getAllPosts = async (): Promise<AxiosResponse<ApiDataType>> => {
   try {
     const posts: AxiosResponse<ApiDataType> = await axios.get(
@@ -23,7 +24,7 @@ export const addPost = async (
       content: formData.content,
       favorite: false,
     }
-    const saveTodo: AxiosResponse<ApiDataType> = await axios.post(
+    const savePost: AxiosResponse<ApiDataType> = await axios.post(
       baseUrl + "/createPosts",
       post
     )
@@ -39,12 +40,12 @@ export const updatePost = async (
   post: PostObj
 ): Promise<AxiosResponse<ApiDataType>> => {
   try {
-    const postUpdate: Pick<PostObj, "favorite"> = {
+    const postUpdated: Pick<PostObj, "favorite"> = {
       favorite: true,
     }
     const updatedPost: AxiosResponse<ApiDataType> = await axios.put(
       `${baseUrl}/updatePost/${post.id}`,
-      postUpdate
+      postUpdated
     )
     return updatedPost
   } catch (error) {
@@ -53,7 +54,7 @@ export const updatePost = async (
 }
 
 
-export const deleteTodo = async (
+export const deletePost = async (
   id: string
 ): Promise<AxiosResponse<ApiDataType>> => {
   try {
