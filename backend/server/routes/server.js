@@ -7,12 +7,10 @@ const express = require('express');
 const router = express.Router()
 
 
-
 // app.get('/api/users', Users)
 router.post('/signUp', Users.createUser)  // API route for user to signup
 
 router.post('/login', Users.login); // API route for user login
-
 
 // router.get("/getUsersFav", Posts.getUsersFavPosts); // API route for user to get all posts in the database
 
