@@ -74,7 +74,9 @@ const updatePost = async (req, res) => {
         content: content || post.content,
         favorite: favorite || post.favorite,
       });
-      return res.status(200).json({ post: updatedPost });
+      return res.status(200).json({
+        message: 'Post updated',
+        post: updatedPost });
     }
   } catch (error) {
     return res.status(500).send(error.message);
