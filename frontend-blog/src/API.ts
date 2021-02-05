@@ -40,7 +40,9 @@ export const updatePost = async (
   post: PostObj
 ): Promise<AxiosResponse<ApiDataType>> => {
   try {
-    const postUpdated: Pick<PostObj, "favorite"> = {
+    const postUpdated: Pick<PostObj, "id", "title", "content", "favorite"> = {
+      title: post.title, 
+      content: post.content,
       favorite: true,
     }
     const updatedPost: AxiosResponse<ApiDataType> = await axios.put(
